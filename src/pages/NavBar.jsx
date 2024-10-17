@@ -37,10 +37,7 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
-  const deconnexion = () => {
-    localStorage.removeItem("utilisateur");
-    window.location.replace("/connexion")
-  }
+  
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -78,20 +75,20 @@ export default function NavBar() {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
-              <Link to="/plantes" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Mes plantes
+              <Link to="/meteo" style={{ textDecoration: 'none', color: 'inherit' }}>
+                Mes stations
               </Link>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
               <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Mes pastas
+                Mes autres
               </Link>
             </MenuItem>
           </Menu>
 
           {/* Titre principal */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            My Social NetWork
+            Ma météo
           </Typography>
           
             <div>
@@ -122,7 +119,7 @@ export default function NavBar() {
               >
               
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={deconnexion}>Déconnexion</MenuItem>
+                {/* <MenuItem onClick={deconnexion}>Déconnexion</MenuItem> */}
               </Menu>
             </div>
           

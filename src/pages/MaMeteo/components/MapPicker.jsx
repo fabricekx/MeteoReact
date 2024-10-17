@@ -31,7 +31,7 @@ function ClickableMap() {
       <MapContainer
         center={[coordinates.lat, coordinates.lng]} // Centre initial de la carte
         zoom={13}
-        style={{ height: '400px', width: '100%' }}
+        style={{ height: '500px', width: '100%' }}
         dragging={true}
         whenCreated={(mapInstance) => { mapRef.current = mapInstance }} // Enregistre l'instance de la carte dans le ref
       

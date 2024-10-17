@@ -163,7 +163,7 @@ const gradientGustStops = getGradientForMaxSpeed(maxGust);
 
   return (
     <div className="chart-container">
-    <ResponsiveContainer width={1200} height={300}> {/* Largeur plus grande que 100% pour permetre le défilement */}
+    <ResponsiveContainer width={1500} height={500}> {/* Largeur plus grande que 100% pour permetre le défilement */}
       <ComposedChart 
         data={transformedData} 
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
