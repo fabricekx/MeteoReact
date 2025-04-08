@@ -1,7 +1,0 @@
-.chart-container {
-    width: 100%; /* La largeur du conteneur sera 100% de l'écran */
-    overflow-x: scroll; /* Permet le défilement horizontal */
-    -webkit-overflow-scrolling: touch; /* Permet un défilement fluide sur mobile */
-    margin-top: 50px;
-  }
-  

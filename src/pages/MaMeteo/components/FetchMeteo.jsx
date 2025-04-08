@@ -31,10 +31,10 @@ export default function FetchMeteo({ latitude, longitude }) {
   if (error) return <div>Erreur : {error.message}</div>;
 
   return (
-    <div>
-      <h2 style={{ marginTop:'20px'}}>Données météo</h2>
+    <div className="bg-color">
+      <h2 id="donneesMeteo" >Données météo</h2>
       {weatherData && weatherData.hourly ? (
-        <div>
+        <div className="bg-color">
           {console.log(weatherData.hourly)}
           {/* Vérification supplémentaire sur les données disponibles */}
           <WindChart windData={weatherData.hourly} />

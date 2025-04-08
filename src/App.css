@@ -1,0 +1,40 @@
+.bg-color  {
+background-color: rgb(170,211,223);
+}
+
+h2  {
+    color: beige;
+    background-color: rgb(170,211,223) ;
+}
+
+.chart-container {
+    display: flex;
+   width: 100%
+}
+
+.mainChart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:  4px;
+}
+
+.button {
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.bg-blue {
+    background-color: rgb(100, 100, 139);
+    color: beige;
+}
+
+.bd-gray {
+    background-color: beige;
+}
+
+.recharts-layer {
+    width: 100px !important;
+}
+

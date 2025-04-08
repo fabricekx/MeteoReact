@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react"; 
 import {
   ComposedChart,
   Area,
@@ -13,9 +14,38 @@ import {
 } from "recharts";
 import WindDirection from "./WindDirection";
 import { TbArrowDownTail } from "react-icons/tb"; // Icône flèche pour direction du vent
-import "../css/windchart.css";
 
 const WindChart = ({ windData }) => {
+  const [selectedDay, setSelectedDay] = useState("day1");
+  // Choix des données selon le jour sélectionné
+  const getChartData = () => {
+    switch (selectedDay) {
+      case "day2":
+        return day2;
+      case "day3":
+        return day3;
+      case "day1":
+      default:
+        return day1;
+    }
+  };
+  // Mon composant ResponsiveContainer attend une largeur de type number, il faut donc que je connaisse la largeur de mon écran
+  function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      }
+  
+      window.addEventListener("resize", handleResize);
+      handleResize(); // call it once on mount
+  
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowSize;
+  }
   // Transformation des données de vent
   const transformedData = windData.time.map((time, index) => {
     const windSpeed = windData.wind_speed_10m[index];
@@ -172,13 +202,20 @@ const WindChart = ({ windData }) => {
   const gradientStops = getGradientForMaxSpeed(maxSpeed);
   const gradientGustStops = getGradientForMaxSpeed(maxGust);
 
-  return (
-    <div className="chart-container">
-      <ResponsiveContainer width={1500} height={500}>
+  // Pour faire un graphique journalier, je coupe mes datas en 3
+  const third = Math.ceil(transformedData.length / 3);
+const day1 = transformedData.slice(0, third);
+const day2 = transformedData.slice(third, third * 2);
+const day3 = transformedData.slice(third * 2);
+const { width } = useWindowSize();
+// console.log("Largeur écran",width);
+const MyChart = ({data}) => (
+  
+  <ResponsiveContainer width={width} height={500}>
         {" "}
         {/* Largeur plus grande que 100% pour permetre le défilement */}
         <ComposedChart
-          data={transformedData}
+          data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
         >
           <defs>
@@ -219,7 +256,8 @@ const WindChart = ({ windData }) => {
             label={{
               value: "Vitesse du vent (nœuds)",
               angle: -90,
-              position: "insideBottomLeft",
+              // position:"insideBottomLeft",
+             
             }}
             // domain={[0, 50]} // Fixer l'axe des Y entre 0 et 50
           />
@@ -233,7 +271,7 @@ const WindChart = ({ windData }) => {
             label={{
               value: "Précipitations (mm)",
               angle: -90,
-              position: "insideRight",
+              // position: "insideRight",
             }}
           />
           <Tooltip
@@ -294,9 +332,42 @@ const WindChart = ({ windData }) => {
         </ComposedChart>
         {/* Ce composant n'est plus utilisé */}
         {/* <WindDirection windDirectionData = {transformedData}></WindDirection> */}
-        <p>Origine: MeteoFrance (Arpège)</p>
+        <p className="bg-color">Origine: MeteoFrance (Arpège)</p>
 
       </ResponsiveContainer>
+)
+
+  return (
+    <div className="mainChart">
+      <div className="flex gap-2">
+        <button
+          className={`button ${
+            selectedDay === "day1" ? "bg-blue" : "bg-gray"
+          }`}
+          onClick={() => setSelectedDay("day1")}
+        >
+          Aujourd’hui
+        </button>
+        <button
+          className={`button ${
+            selectedDay === "day2" ? "bg-blue" : "bg-gray"
+          }`}
+          onClick={() => setSelectedDay("day2")}
+        >
+          Demain
+        </button>
+        <button
+          className={`button ${
+            selectedDay === "day3" ? "bg-blue" : "bg-gray"
+          }`}
+          onClick={() => setSelectedDay("day3")}
+        >
+          Après-demain
+        </button>
+      </div>
+    <div className="chart-container">
+      <MyChart data={day1}></MyChart>
+    </div>
     </div>
   );
 };

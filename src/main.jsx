@@ -23,7 +23,7 @@ const router= createBrowserRouter([
 
 
 ], 
-{ basename: "/MeteoReact" }
+{ basename: import.meta.env.BASE_URL || '/MeteoReact' }
 ); // pour le déploiement depuis le dépot git
 
 
