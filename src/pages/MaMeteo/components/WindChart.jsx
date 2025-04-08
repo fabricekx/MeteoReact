@@ -206,7 +206,7 @@ const WindChart = ({ windData }) => {
   const third = Math.ceil(transformedData.length / 3);
 const day1 = transformedData.slice(0, third);
 const day2 = transformedData.slice(third, third * 2);
-const day3 = transformedData.slice(third * 2);
+const day3 = transformedData.slice(third * 2, third * 3 );
 const { width } = useWindowSize();
 // console.log("Largeur écran",width);
 const MyChart = ({data}) => (
