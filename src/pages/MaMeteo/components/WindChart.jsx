@@ -344,7 +344,7 @@ const MyChart = ({data}) => (
           className={`button ${
             selectedDay === "day1" ? "bg-blue" : "bg-gray"
           }`}
-          onClick={() => setSelectedDay("day1")}
+          onClick={() => setSelectedDay("day1") }
         >
           Aujourd’hui
         </button>
@@ -366,7 +366,7 @@ const MyChart = ({data}) => (
         </button>
       </div>
     <div className="chart-container">
-      <MyChart data={day1}></MyChart>
+      <MyChart data={getChartData()}></MyChart>
     </div>
     </div>
   );
