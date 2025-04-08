@@ -3,8 +3,10 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 // Correction pour l'icône par défaut de Leaflet
-import markerIconPng from 'leaflet/dist/images/marker-icon.png';
-import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
+// import markerIconPng from 'leaflet/dist/images/marker-icon.png';
+import markerIconPng from '../../../assets/icons/marker-icon.png'; // ou chemin relatif
+
+import markerShadowPng from '../../../assets/icons/marker-shadow.png';
 
 
 
